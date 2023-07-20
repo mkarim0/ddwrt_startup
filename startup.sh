@@ -1,3 +1,4 @@
+#!/bin/sh
 sleep 15
 get_traffic(){
     RX="$(/sbin/ifconfig eth0 | grep -o '[[:digit:]]*' | sed -n 22p)"
@@ -7,7 +8,13 @@ get_traffic(){
 }
 get_traffic
 
-interface_down(){ /sbin/ifconfig eth0 down 2>/dev/null && exit; }
+interface_down(){
+while true
+do
+ /sbin/ifconfig eth0 down 2>/dev/null;
+ sleep 10
+done
+ }
 
 while true
 do
@@ -16,7 +23,7 @@ do
  then
    interface_down
  fi
- 
+
 
  sleep 10
 done
