@@ -9,11 +9,10 @@ get_traffic(){
 get_traffic
 
 interface_down(){
-while true
-do
+
  /sbin/ifconfig eth0 down 2>/dev/null;
  sleep 10
-done
+
  }
 
 while true
